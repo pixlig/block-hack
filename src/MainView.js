@@ -17,7 +17,7 @@ export default function MainView(props) {
   return (
     <Layout>
       <Header>
-        <img className="App-logo" src={logo}/>
+        <img className="App-logo" alt="Logo: Netpower" src={logo}/>
       </Header>
       <Layout>
         <Content style={{ padding: '0 50px' }}>
