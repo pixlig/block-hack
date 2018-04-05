@@ -2,19 +2,6 @@ import React from 'react';
 import { Table } from 'antd';
 import { getReport } from './API.js'
 
-
-const dataSource = [{
-  key: '1',
-  name: 'Mike',
-  age: 32,
-  address: '10 Downing Street'
-}, {
-  key: '2',
-  name: 'John',
-  age: 42,
-  address: '10 Downing Street'
-}];
-
 const columns = [{
   title: 'Consumed',
   dataIndex: 'consumed',
@@ -35,13 +22,17 @@ export default class OrdersTable extends React.Component {
   }
 
   componentDidMount() {
+    let i = 0;
     getReport().then(marketList => this.setState({
-      data: marketList,
+      data: marketList.map(item => {
+        item.key = i++;
+        return item;
+      }),
     }))
   }
 
 
   render() {
-  return <Table dataSource={this.state.data} columns={columns} />
+    return <Table dataSource={this.state.data} columns={columns} />
   }
 }
