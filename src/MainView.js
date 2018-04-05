@@ -3,7 +3,7 @@ import { Layout, Menu, Row, Col } from 'antd';
 
 import participants from './participants';
 
-import NotificationForm from './NotificationForm';
+import PublishForm from './PublishForm';
 import RequestForm from './RequestForm';
 import OrdersTable from './OrdersTable';
 
@@ -23,7 +23,7 @@ export default function MainView(props) {
         <Content style={{ padding: '0 50px' }}>
           <Row style={{ marginTop: 32 }}>
             <Col span={6} offset={3}>
-              <NotificationForm meter={participants()["meter1"]} />
+              <PublishForm meter={participants()["meter1"]} />
             </Col>
             <Col span={6} offset={3}>
               <RequestForm meter={participants()["meter1"]} />

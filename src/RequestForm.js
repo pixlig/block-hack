@@ -1,6 +1,6 @@
 import React from 'react';
 import { Row, Col, Form, Button, InputNumber, Select } from 'antd';
-import { betterPost, getMarket } from './API.js'
+import { publishRequest, getMarket } from './API.js'
 
 
 const FormItem = Form.Item;
@@ -30,10 +30,10 @@ export default class NotificationForm extends React.Component {
     this.setState({
       fetching: true,
     })
-    betterPost({
-      address: this.state.address,
-      quantity: this.state.quantity,
-    })
+    publishRequest(
+      this.state.address,
+      this.state.quantity
+    )
   }
 
   handleChange = (param, value) => {

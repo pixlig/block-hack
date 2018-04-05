@@ -1,11 +1,11 @@
 import React from 'react';
 import { Row, Col, Form, Button, InputNumber } from 'antd';
-import { betterPost } from './API.js'
+import { publishOffer } from './API.js'
 
 
 const FormItem = Form.Item;
 
-export default class NotificationForm extends React.Component {
+export default class PublishForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -22,7 +22,7 @@ export default class NotificationForm extends React.Component {
     this.setState({
       fetching: true,
     })
-    betterPost({
+    publishOffer({
       address: this.state.address,
       quantity: this.state.quantity,
     }).then(serverResponse =>
