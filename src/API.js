@@ -1,6 +1,6 @@
 export function getMarket() {
   return fetch(
-    "https://mwq82ie5x0.execute-api.eu-west-1.amazonaws.com/Prod/getInfo",
+    "https://mwq82ie5x0.execute-api.eu-west-1.amazonaws.com/Prod/getMarketOverview",
     {
       method: "POST",
       headers: new Headers({
@@ -8,8 +8,8 @@ export function getMarket() {
         'Content-Type': 'application/json',
       }),
       credentials: 'include',
-      mode: 'no-cors',
-      body: JSON.stringify({ "streamName": "13aPdsAohNN29S1Jao5EnergySurvey" }),
+      mode: 'cors',
+      body: JSON.stringify({ "marketName": "1H8Tcu3y4Fft8KelagMarket42" }),
     })
     .then(response =>
       response.json().then(json => {
@@ -35,9 +35,26 @@ export function getReport() {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       }),
+      mode: 'cors',
+      body: JSON.stringify({ "streamName": "13pER3GZmVPQUdM8ipjEnergySurvey" }),
+    })
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(response => response["report"]);
+}
+
+export function publishOffer(address, quantity, price) {
+  return fetch(
+    "https://mwq82ie5x0.execute-api.eu-west-1.amazonaws.com/Prod/publish",
+    {
+      method: "POST",
+      headers: new Headers({
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      }),
       credentials: 'include',
-      mode: 'no-cors',
-      body: JSON.stringify({ "streamName": "13aPdsAohNN29S1Jao5EnergySurvey" }),
+      body: JSON.stringify({address, quantity, price}),
+      mode: 'cors',
     })
     .then(response =>
       response.json().then(json => {
@@ -54,7 +71,7 @@ export function getReport() {
     });
 }
 
-export function betterPost(dataObject) {
+export function publishRequest(address, quantity) {
   return fetch(
     "https://mwq82ie5x0.execute-api.eu-west-1.amazonaws.com/Prod/publish",
     {
@@ -64,7 +81,7 @@ export function betterPost(dataObject) {
         'Content-Type': 'application/json',
       }),
       credentials: 'include',
-      body: JSON.stringify(dataObject),
+      body: JSON.stringify({address, quantity}),
       mode: 'cors',
     })
     .then(response =>
