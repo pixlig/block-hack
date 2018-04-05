@@ -1,8 +1,8 @@
 export default function participants() {
   return {
     meter1: {
-      address: "1KnwwevSxQ9AwGQa4UHRtWnGvMyqwEwrJ8rpKE",
-      streamName: "13aPdsAohNN29S1Jao5EnergySurvey",
+      address: "13pER3GZmVPQUdM8ipjfDghnjkXDjk25H4ik7B",
+      streamName: "13pER3GZmVPQUdM8ipjEnergySurvey",
     },
   }
 }
