@@ -10,16 +10,10 @@ export default class NotificationForm extends React.Component {
     super(props);
     this.state = {
       fetching: false,
-      quantity: 0.0,
+      quantity: 0,
       address: props.meter.address,
       transactionID: null,
-      data: [
-        { name: 'race', value: 'Racing car sprays burning fuel into crowd.' },
-        { name: 'Japanese', value: 'Japanese princess to wed commoner.' },
-        { name: 'Australian', value: 'Australian walks 100km after outback crash.' },
-        { name: 'Man', value: 'Man charged over missing wedding girl.' },
-        { name: 'Los', value: 'Los Angeles battles huge wildfires.' },
-      ],
+      data: [],
     };
   }
 
@@ -68,7 +62,7 @@ export default class NotificationForm extends React.Component {
             <Row gutter={24}>
               <Col span={8} key={'quantity'}>
                 <FormItem label={`Quantity`}>
-                  <InputNumber min={0} max={10} step={0.1} value={this.state.quantity} onChange={(e) => this.handleChange('quantity', e)} />
+                  <InputNumber min={0} max={10} step={1} value={this.state.quantity} onChange={(e) => this.handleChange('quantity', e)} />
                 </FormItem>
               </Col>
             </Row>

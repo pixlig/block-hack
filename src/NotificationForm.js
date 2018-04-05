@@ -48,12 +48,12 @@ export default class NotificationForm extends React.Component {
             <Row gutter={24}>
               <Col span={8} key={'price'}>
                 <FormItem label={`Price`}>
-                  <InputNumber min={0} max={10} step={0.1} value={this.state.price} onChange={(e) => this.handleChange('price', e)} />
+                  <InputNumber min={0} max={10} step={1} value={this.state.price} onChange={(e) => this.handleChange('price', e)} />
                 </FormItem>
               </Col>
               <Col span={8} key={'quantity'}>
                 <FormItem label={`Quantity`}>
-                  <InputNumber min={0} max={10} step={0.1} value={this.state.quantity} onChange={(e) => this.handleChange('quantity', e)} />
+                  <InputNumber min={0} max={10} step={1} value={this.state.quantity} onChange={(e) => this.handleChange('quantity', e)} />
                 </FormItem>
               </Col>
             </Row>
