@@ -6,13 +6,16 @@ import { betterPost } from './API.js'
 const FormItem = Form.Item;
 
 export default class NotificationForm extends React.Component {
-  state = {
-    fetching: false,
-    price: 0.0,
-    quantity: 0.0,
-    address: "1KnwwevSxQ9AwGQa4UHRtWnGvMyqwEwrJ8rpKE",
-    transactionID: null,
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      fetching: false,
+      price: 0.0,
+      quantity: 0.0,
+      address: props.meter.address,
+      transactionID: null,
+    };
+  }
 
   handleSubmit = (e) => {
     e.preventDefault();
@@ -22,7 +25,7 @@ export default class NotificationForm extends React.Component {
     betterPost({
       address: this.state.address,
       quantity: this.state.quantity,
-    }).then(serverResponse => 
+    }).then(serverResponse =>
       this.setState({
         fetching: false,
         transactionID: serverResponse
@@ -45,7 +48,7 @@ export default class NotificationForm extends React.Component {
             <Row gutter={24}>
               <Col span={8} key={'price'}>
                 <FormItem label={`Price`}>
-                  <InputNumber min={0} max={10} step={0.1} value={this.state.price} onChange={(e) => this.handleChange('price', e)}/>
+                  <InputNumber min={0} max={10} step={0.1} value={this.state.price} onChange={(e) => this.handleChange('price', e)} />
                 </FormItem>
               </Col>
               <Col span={8} key={'quantity'}>
@@ -55,8 +58,8 @@ export default class NotificationForm extends React.Component {
               </Col>
             </Row>
           </Form>
-          <Button type="primary" loading={this.state.fetching} onClick={this.handleSubmit}>Submit</Button>
-          <br/>
+          <Button type="primary" loading={this.state.fetching} onClick={this.handleSubmit}>Publish</Button>
+          <br />
           {this.state.transactionID ? `#{transactionID}` : "No transaction recorded"}
         </Col >
       </Row >

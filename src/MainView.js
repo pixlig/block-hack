@@ -2,13 +2,12 @@ import React from 'react';
 import { Layout, Menu, Row, Col } from 'antd';
 import NotificationForm from './NotificationForm';
 import RequestForm from './RequestForm';
+import participants from './participants';
 
 const { Header, Footer, Content } = Layout;
 
 
 export default function MainView(props) {
-  let { participants } = props;
-
   return (
     <Layout>
       <Header>
@@ -23,10 +22,10 @@ export default function MainView(props) {
       <Content style={{ padding: '0 50px' }}>
         <Row>
           <Col span={6}>
-            <NotificationForm />
+            <NotificationForm meter={participants()["meter1"]}/>
           </Col>
           <Col span={6}>
-            <RequestForm />
+            <RequestForm meter={participants()["meter1"]} />
           </Col>
         </Row>
       </Content>

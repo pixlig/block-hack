@@ -1,24 +1,35 @@
 import React from 'react';
 import { Row, Col, Form, Button, InputNumber, Select } from 'antd';
-import { betterPost } from './API.js'
+import { betterPost, getMarket } from './API.js'
 
 
 const FormItem = Form.Item;
 
 export default class NotificationForm extends React.Component {
-  state = {
-    fetching: false,
-    quantity: 0.0,
-    address: "1KnwwevSxQ9AwGQa4UHRtWnGvMyqwEwrJ8rpKE",
-    transactionID: null,
-    data: [
-      {name: 'race', value: 'Racing car sprays burning fuel into crowd.'},
-      {name: 'Japanese', value: 'Japanese princess to wed commoner.'},
-      {name: 'Australian', value: 'Australian walks 100km after outback crash.'},
-      {name: 'Man', value: 'Man charged over missing wedding girl.'},
-      {name: 'Los', value: 'Los Angeles battles huge wildfires.'},
-    ],
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      fetching: false,
+      quantity: 0.0,
+      address: props.meter.address,
+      transactionID: null,
+      data: [
+        { name: 'race', value: 'Racing car sprays burning fuel into crowd.' },
+        { name: 'Japanese', value: 'Japanese princess to wed commoner.' },
+        { name: 'Australian', value: 'Australian walks 100km after outback crash.' },
+        { name: 'Man', value: 'Man charged over missing wedding girl.' },
+        { name: 'Los', value: 'Los Angeles battles huge wildfires.' },
+      ],
+    };
+  }
+
+  componentDidMount() {
+    getMarket().then(marketList => this.setState({
+      data: [
+        { name: 'request successful', value: 'Request' },
+      ],
+    }))
+  }
 
   handleSubmit = (e) => {
     e.preventDefault();
@@ -50,8 +61,8 @@ export default class NotificationForm extends React.Component {
           <h1>Create Request</h1>
           <Form>
             <Row gutter={24}>
-              <Select defaultValue="Los" style={{ width: 120 }} onChange={this.handleSelect}>
-                {this.state.data.map(item => (<Select.Option value={item.value}>{item.name}</Select.Option>))}
+              <Select placeholder={"Select requests"} style={{ width: 120 }} onChange={this.handleSelect}>
+                {this.state.data.map(item => (<Select.Option key={item.value} value={item.value}>{item.name}</Select.Option>))}
               </Select>
             </Row>
             <Row gutter={24}>
@@ -62,8 +73,8 @@ export default class NotificationForm extends React.Component {
               </Col>
             </Row>
           </Form>
-          <Button type="primary" loading={this.state.fetching} onClick={this.handleSubmit}>Submit</Button>
-          <br/>
+          <Button type="primary" loading={this.state.fetching} onClick={this.handleSubmit}>Request</Button>
+          <br />
           {this.state.transactionID ? `#{transactionID}` : "No transaction recorded"}
         </Col >
       </Row >
